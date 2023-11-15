@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
-                        sh 'mvn compile'
+                        sh 'mvn clean'
                     }
                 }
             }
@@ -22,7 +22,8 @@ pipeline {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
-                        sh 'mvn clean'
+                        sh 'chmod +x mvnw'
+                        sh './mvnw compile'
                     }
                 }
             }
@@ -32,6 +33,7 @@ pipeline {
             steps {
               script {
                     dir('DevOps_Project-Back') {
+                        sh 'chmod +x mvnw'
                         sh './mvnw test'
                     }
                 }
