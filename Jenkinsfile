@@ -12,12 +12,33 @@ pipeline {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
-                        sh 'chmod +x mvnw'
-                    sh './mvnw clean install'
+                        sh 'mvn compile'
                     }
                 }
             }
         }
+
+        stage('Compile Backend') {
+            steps {
+                script {
+                    dir('DevOps_Project-Back') {
+                        sh 'mvn clean'
+                    }
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+              script {
+                    dir('DevOps_Project-Back') {
+                        sh 'mvn test'
+                    }
+                }
+                
+            }
+        }
+
 
         stage('Build Frontend') {
             steps {
