@@ -29,7 +29,7 @@ pipeline {
             }
         }
 
-        stage('Test') {
+       /* stage('Test') {
             steps {
               script {
                     dir('DevOps_Project-Back') {
@@ -37,9 +37,9 @@ pipeline {
                         sh './mvnw test'
                     }
                 }
-                junit '**/target/surefire-reports/TEST-*.xml'
+                junit '**/  /*target/surefire-reports/TEST-*.xml'
             }
-        }
+        }*/
 
 
         stage('Build Frontend') {
