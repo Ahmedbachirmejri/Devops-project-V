@@ -32,10 +32,10 @@ pipeline {
             steps {
               script {
                     dir('DevOps_Project-Back') {
-                        sh 'mvn test'
+                        sh './mvnw test'
                     }
                 }
-                
+                junit '**/target/surefire-reports/TEST-*.xml'
             }
         }
 
