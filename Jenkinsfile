@@ -12,7 +12,8 @@ pipeline {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
-                        sh 'mvn clean package'
+                        sh 'chmod +x mvnw'
+                    sh './mvnw clean install'
                     }
                 }
             }
