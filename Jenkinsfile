@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    
     stages {
         stage('Checkout') {
             steps {
@@ -47,7 +47,7 @@ pipeline {
                 script {
                     dir('DevOps_Project_Front') {
                         sh 'npm install'
-                        sh 'ng build'
+                        sh 'npm run build'
                     }
                 }
             }
