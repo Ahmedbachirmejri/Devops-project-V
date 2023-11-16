@@ -69,7 +69,7 @@ pipeline {
         stage('Build Backend Docker Image') {
             steps {
                
-                    sh 'docker build -t ahmedbachir/devops-backend:latest -f Dockerfile .'
+                    sh 'docker build -t ahmedbachir/devops-backend:latest -f Dockerfile --no-cache .'
                 
             }
         }
