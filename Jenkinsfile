@@ -66,7 +66,7 @@ pipeline {
         stage('Build Backend Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t ahmedbachir/devops-backend:latest -f Dockerfile.backend .'
+                    sh 'docker build -t ahmedbachir/alpine:1.0.0:latest -f Dockerfile.backend .'
                 }
             }
         }
@@ -80,7 +80,7 @@ pipeline {
                     sh 'docker login -u ahmedbachir -p mejri9876543210'
                     
 
-                    sh 'docker push ahmedbachir/devops-backend:latest'
+                    sh 'docker push ahmedbachir/alpine:1.0.0:latest'
                     
                 }
             }
