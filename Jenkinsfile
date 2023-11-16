@@ -65,10 +65,7 @@ pipeline {
         stage('Build Backend Docker Image') {
             steps {
                 script {
-                  dir('DevOps_Project-Back') {
-                        sh 'docker build -t ahmedbachir/devops-backend:latest -f Dockerfile .'
-                  }
-                   
+                    sh 'docker build -t ahmedbachir/devops-backend:latest -f Dockerfile .'
                 }
             }
         }
@@ -78,13 +75,11 @@ pipeline {
         stage('Push Docker Images to Docker Hub') {
             steps {
                 script {
-                      dir('DevOps_Project-Back') {
-                        sh 'docker login -u ahmedbachir -p mejri9876543210'
+
+                    sh 'docker login -u ahmedbachir -p mejri9876543210'
                     
 
-                        sh 'docker push ahmedbachir/devops-backend:latest'
-                      }
-                    
+                    sh 'docker push ahmedbachir/devops-backend:latest'
                     
                 }
             }
