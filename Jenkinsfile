@@ -51,6 +51,8 @@ pipeline {
                 junit '**/   /*target/surefire-reports/TEST-*.xml'
             }
         }*/
+
+        /*
         stage('Build Frontend') {
             steps {
                 script {
@@ -61,7 +63,7 @@ pipeline {
                 }
             }
         }
-
+*/
         stage('Build Backend Docker Image') {
             steps {
                 script {
