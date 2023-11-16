@@ -1,11 +1,3 @@
-# Build Stage
-FROM maven:3.8.3-openjdk-8 AS build
-WORKDIR /app
-COPY pom.xml .
-RUN mvn dependency:go-offline
-COPY src ./src
-RUN mvn package -DskipTests
-
 # Use an official OpenJDK runtime as a parent image
 FROM openjdk:8
 
