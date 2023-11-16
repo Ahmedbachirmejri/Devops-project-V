@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Nexus') {
+        /*stage('Nexus') {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
@@ -28,7 +28,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
         stage('Compile Backend') {
             steps {
@@ -58,6 +58,31 @@ pipeline {
                         sh 'npm install'
                         sh 'npm run build'
                     }
+                }
+            }
+        }
+    }
+
+    stages {
+        stage('Build Backend Docker Image') {
+            steps {
+                script {
+                    sh 'docker build -t ahmedbachir/devops-backend:latest -f Dockerfile.backend .'
+                }
+            }
+        }
+
+
+
+        stage('Push Docker Images to Docker Hub') {
+            steps {
+                script {
+
+                    sh 'docker login -u ahmedbachir -p mejri9876543210'
+                    
+
+                    sh 'docker push ahmedbachir/devops-backend:latest'
+                    
                 }
             }
         }
