@@ -20,6 +20,16 @@ pipeline {
             }
         }
 
+        stage('Nexus') {
+            steps {
+                script {
+                    dir('DevOps_Project-Back') {
+                        sh 'mvn deploy'
+                    }
+                }
+            }
+        }
+
         stage('Compile Backend') {
             steps {
                 script {
