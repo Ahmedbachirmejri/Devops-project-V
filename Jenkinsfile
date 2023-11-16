@@ -3,6 +3,9 @@ pipeline {
     tools {
             nodejs 'nodejs21.2.0'
     }
+    environment {
+      DOCKERHUB_CREDENTIALS = credentials('ahmedbachir-dockerhub')
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -65,24 +68,27 @@ pipeline {
 
         stage('Build Backend Docker Image') {
             steps {
-                script {
-                    sh 'docker build -t ahmedbachir/alpine:1.0.0:latest -f Dockerfile.backend .'
-                }
+               
+                    sh 'docker build -t ahmedbachir/devops-backend:latest -f Dockerfile .'
+                
+            }
+        }
+
+        stage('Login') {
+            steps {
+                
+                    sh 'echo DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                
             }
         }
 
 
-
         stage('Push Docker Images to Docker Hub') {
             steps {
-                script {
-
-                    sh 'docker login -u ahmedbachir -p mejri9876543210'
+                
+                    sh 'docker push ahmedbachir/devops-backend:latest'
                     
-
-                    sh 'docker push ahmedbachir/alpine:1.0.0:latest'
-                    
-                }
+                
             }
         }
     }
