@@ -31,7 +31,7 @@ pipeline {
             }
         }
 
-       /* stage('Test') {
+        stage('Test') {
             steps {
               script {
                     dir('DevOps_Project-Back') {
@@ -39,11 +39,9 @@ pipeline {
                         sh './mvnw test'
                     }
                 }
-                junit '**/  /*target/surefire-reports/TEST-*.xml'
+                junit '**/target/surefire-reports/TEST-*.xml'
             }
-        }*/
-
-
+        }
         stage('Build Frontend') {
             steps {
                 script {
@@ -54,18 +52,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Package') {
-            steps {
-                script {
-                    archiveArtifacts artifacts: [
-                        'DevOps_Project-Back/target/*.jar',
-                        'DevOps_Project_Front/dist/*'
-                    ], fingerprint: true
-                }
-            }
-        }
-
     }
 
 }
