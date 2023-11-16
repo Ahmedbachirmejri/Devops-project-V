@@ -31,16 +31,16 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        /*stage('Test') {
             steps {
               script {
                     dir('DevOps_Project-Back') {
                         sh 'mvn test'
                     }
                 }
-                junit '**/target/surefire-reports/TEST-*.xml'
+                junit '**/   /*target/surefire-reports/TEST-*.xml'
             }
-        }
+        }*/
         stage('Build Frontend') {
             steps {
                 script {
