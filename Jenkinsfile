@@ -35,8 +35,7 @@ pipeline {
             steps {
               script {
                     dir('DevOps_Project-Back') {
-                        sh 'chmod +x mvnw'
-                        sh './mvnw test'
+                        sh 'mvn test'
                     }
                 }
                 junit '**/target/surefire-reports/TEST-*.xml'

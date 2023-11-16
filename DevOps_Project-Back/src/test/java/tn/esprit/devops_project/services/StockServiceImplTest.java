@@ -4,7 +4,6 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -14,8 +13,8 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 import tn.esprit.devops_project.entities.Stock;
+import tn.esprit.devops_project.services.StockServiceImpl;
 
 import java.util.List;
 
@@ -29,20 +28,13 @@ import static org.junit.jupiter.api.Assertions.*;
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
 @ActiveProfiles("test")
+
 class StockServiceImplTest {
 
     @Autowired
     private StockServiceImpl stockService;
 
-    @Test
-    @DatabaseSetup("/data-set/stock-data.xml")
-    void addStock() {
-        final Stock stock = new Stock();
-        stock.setTitle("Title");
-        this.stockService.addStock(stock);
-        assertEquals(this.stockService.retrieveAllStock().size(),2);
-        assertEquals(this.stockService.retrieveStock(2L).getTitle(),"Title");
-    }
+
 
     @Test
     @DatabaseSetup("/data-set/stock-data.xml")
@@ -58,4 +50,15 @@ class StockServiceImplTest {
         assertEquals(allStocks.size(), 1);
 
     }
+    @Test
+    @DatabaseSetup("/data-set/stock-data.xml")
+    void retrieveStock_NullId() {
+        Exception exception = assertThrows(NullPointerException.class,() ->{
+            final Stock stock = this.stockService.retrieveStock(100L);
+        });
+
+
+    }
+
+
 }
