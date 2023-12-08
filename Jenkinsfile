@@ -78,19 +78,12 @@ pipeline {
             }
         }*/
 
-        stage('Docker build backend') {
+        stage("Docker build backend") {
             steps {
-               
-                    sh 'docker build -t ahmedbachir/devops-backend:latest -f Dockerfile --no-cache .'
-                
-            }
-        }
-
-        stage('Login') {
-            steps {
-                
-                    sh 'echo DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                
+                withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+                    sh 'docker build -t devops_back_end .'
+                    sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD'
+                }
             }
         }
 
