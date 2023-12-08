@@ -6,7 +6,7 @@ import tn.esprit.devops_project.entities.Operator;
 import tn.esprit.devops_project.services.Iservices.IOperatorService;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @AllArgsConstructor
 public class OperatorController {
@@ -28,7 +28,7 @@ public class OperatorController {
 		return operatorService.addOperator(operator);
 	}
 
-	@DeleteMapping("/operatot/{operatorId}")
+	@DeleteMapping("/operator/{operatorId}")
 	public void removeOperator(@PathVariable Long operatorId) {
 		operatorService.deleteOperator(operatorId);
 	}
