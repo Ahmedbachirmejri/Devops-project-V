@@ -44,6 +44,17 @@ pipeline {
             }
         }
 
+        stage('Test Backend') {
+            steps {
+                script {
+                    dir('DevOps_Project-Back') {
+                    sh 'mvn test'
+                    }
+                    
+                }
+            }
+        }
+
         /*stage('Test') {
             steps {
               script {
