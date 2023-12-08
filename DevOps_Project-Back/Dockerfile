@@ -5,10 +5,10 @@ FROM openjdk:11
 WORKDIR /app
 
 # Copy the JAR file into the container at /app
-COPY target/DevOps_Project-Back-1.0.jar /app/DevOps_Project-Back-1.0.jar
+COPY target/DevOps_Project-1.0.0-SNAPSHOT.jar DevOps_Project-1.0.0-SNAPSHOT.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080
 
 # Specify the command to run the application
-CMD ["java", "-jar", "DevOps_Project-Back-1.0.jar"]
+ENTRYPOINT ["java","-jar","/DevOps_Project-1.0.0-SNAPSHOT.jar"]

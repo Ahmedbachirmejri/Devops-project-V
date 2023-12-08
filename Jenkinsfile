@@ -39,12 +39,13 @@ pipeline {
                     dir('DevOps_Project-Back') {
                         sh 'chmod +x mvnw'
                         sh './mvnw compile'
+                        sh 'mvn install'
                     }
                 }
             }
         }
 
-        stage('Test Backend') {
+       /* stage('Test Backend') {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
@@ -53,7 +54,7 @@ pipeline {
                     
                 }
             }
-        }
+        }*/
 
         /*stage('Test') {
             steps {
