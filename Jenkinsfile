@@ -39,6 +39,7 @@ pipeline {
                     dir('DevOps_Project-Back') {
                         sh 'chmod +x mvnw'
                         sh './mvnw compile'
+                        sh 'mvn install'
                     }
                 }
             }
