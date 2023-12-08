@@ -39,13 +39,12 @@ pipeline {
                     dir('DevOps_Project-Back') {
                         sh 'chmod +x mvnw'
                         sh './mvnw compile'
-                        sh 'mvn install'
                     }
                 }
             }
         }
 
-       /* stage('Test Backend') {
+        /*stage('Test Backend') {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
@@ -78,20 +77,26 @@ pipeline {
             }
         }*/
 
-        stage("Docker build backend") {
+        stage('Build Backend Docker Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'ahmedbachir-dockerhub', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
-                    sh 'docker build -t devops_back_end .'
-                    sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD'
-                }
+               
+                    sh 'docker build -t ahmedbachir/devops-backend:latest -f Dockerfile --no-cache .'
+                
             }
         }
 
-        
+        stage('Login') {
+            steps {
+                
+                    sh 'echo DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                
+            }
+        }
 
 
         stage('Push Docker Images to Docker Hub') {
             steps {
+                
                     sh 'docker push ahmedbachir/devops-backend:latest'
                     
                 
