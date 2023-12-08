@@ -78,7 +78,7 @@ pipeline {
             }
         }*/
 
-        stage('Build Backend Docker Image') {
+        stage('Docker build backend') {
             steps {
                
                     sh 'docker build -t ahmedbachir/devops-backend:latest -f Dockerfile --no-cache .'
