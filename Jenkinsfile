@@ -4,7 +4,9 @@ pipeline {
             nodejs 'nodejs21.2.0'
     }
     environment {
-      DOCKERHUB_CREDENTIALS = credentials('ahmedbachir-dockerhub')
+        registry = "ahmedbachir/devops-backend"
+        registryCredential = 'ahmedbachir-dockerhub'
+        dockerImage = ''
     }
     stages {
         stage('Checkout') {
@@ -81,10 +83,7 @@ pipeline {
         stage("Docker build backend") {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'ahmedbachir-dockerhub', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
-                    sh 'docker build -t ahmedbachir/devops-backend:latest .'
-                    sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD'
-                        }
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     }
                 }
         }
@@ -95,6 +94,9 @@ pipeline {
             steps {
                 
                     sh 'docker push ahmedbachir/devops-backend:latest'
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    sh "docker rmi $registry:$BUILD_NUMBER"
                     
                 
             }
