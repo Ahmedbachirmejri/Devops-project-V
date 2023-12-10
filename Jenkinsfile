@@ -81,26 +81,25 @@ pipeline {
         }*/
 
         stage("Docker build backend") {
-            steps {
-                script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                    }
-                }
+    steps {
+        script {
+            dockerImage = docker.build "$registry:$BUILD_NUMBER"
         }
+    }
+}
 
-
-
-        stage('Push Docker Images to Docker Hub') {
-            steps {
-                
-                    sh 'docker push ahmedbachir/devops-backend:latest'
-                    docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
-                    sh "docker rmi $registry:$BUILD_NUMBER"
-                    
-                
+stage('Push Docker Images to Docker Hub') {
+    steps {
+        script {
+            docker.withRegistry('', registryCredential) {
+                dockerImage.push()
+                sh "docker tag $registry:$BUILD_NUMBER ahmedbachir/devops-backend:latest"
+                sh 'docker push ahmedbachir/devops-backend:latest'
+                sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
     }
+}
+
 
 }
