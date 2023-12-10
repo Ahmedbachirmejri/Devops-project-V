@@ -15,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Build Backend') {
+        /*stage('Build Backend') {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
@@ -23,19 +23,19 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
-        /*stage('Nexus') {
+        stage('Nexus') {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
-                        sh 'mvn deploy'
+                         sh "mvn deploy -DskipTests=true"
                     }
                 }
             }
-        }*/
+        }
 
-        stage('Compile Backend') {
+        /*stage('Compile Backend') {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
@@ -45,7 +45,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
         /*stage('Test Backend') {
             steps {
@@ -80,16 +80,16 @@ pipeline {
             }
         }*/
 
-        stage("Docker build backend") {
+    /*  stage("Docker build backend") {
     steps {
         script {
             dockerImage = docker.build "$registry:$BUILD_NUMBER"
         }
     }
-}
+}*/
 
 
-stage('Push Docker Images to Docker Hub') {
+   /*stage('Push Docker Images to Docker Hub') {
     steps {
         script {
             docker.withRegistry('', registryCredential) {
@@ -100,7 +100,7 @@ stage('Push Docker Images to Docker Hub') {
             }
         }
     }
-}
+}*/
 
 
 
