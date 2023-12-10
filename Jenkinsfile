@@ -4,10 +4,10 @@ pipeline {
             nodejs 'nodejs21.2.0'
     }
     environment {
-        registry = "ahmedbachir/devops-backend"
-        registryCredential = 'ahmedbachir-dockerhub'
-        dockerImage = ''
-    }
+    registry = "docker.io/library/devops_back_end"
+    registryCredential = 'ahmedbachir-dockerhub'
+    dockerImage = ''
+}
     stages {
         stage('Checkout') {
             steps {
@@ -88,6 +88,7 @@ pipeline {
     }
 }
 
+
 stage('Push Docker Images to Docker Hub') {
     steps {
         script {
@@ -100,6 +101,7 @@ stage('Push Docker Images to Docker Hub') {
         }
     }
 }
+
 
 
 }
