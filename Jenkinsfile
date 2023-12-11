@@ -72,9 +72,9 @@ pipeline {
         stage('SonarQube') {
     steps {
         script {
-            dir('DevOps-project/DevOps_Project-Back') {
+            dir('DevOps_Project-Back') {
                 echo "SonarQube"
-                sh 'mvn -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.jacoco.reportPath=target/jacoco.exec sonar:sonar'
+                sh 'mvn -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.jacoco.reportPath=DevOps_Project-Back/target/jacoco.exec sonar:sonar'
             }
         }
     }
