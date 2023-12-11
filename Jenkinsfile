@@ -25,7 +25,7 @@ pipeline {
             }
         }*/
 
-        stage('Nexus') {
+       /* stage('Nexus') {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
@@ -33,7 +33,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
         /*stage('Compile Backend') {
             steps {
@@ -68,6 +68,23 @@ pipeline {
                 junit '**/   /*target/surefire-reports/TEST-*.xml'
             }
         }*/
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool name: 'Sonar_devops', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    withSonarQubeEnv('Sonar_devops') {
+                        // Run Maven command with SonarQube analysis
+                        sh "mvn clean verify sonar:sonar \
+                            -Dsonar.projectKey=Devops-project-V \
+                            -Dsonar.projectName='Devops-project-V' \
+                            -Dsonar.host.url=http://10.0.2.15:9000 \
+                            -Dsonar.token=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"
+                    }
+                }
+            }
+        }
+
         /*
         stage('Build Frontend') {
             steps {
@@ -101,8 +118,6 @@ pipeline {
         }
     }
 }*/
-
-
 
 }
 }
