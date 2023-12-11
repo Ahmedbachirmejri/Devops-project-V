@@ -70,16 +70,15 @@ pipeline {
         }*/
 
         stage('SonarQube') {
-            steps {
-                script {
-                    dir('DevOps_Project-Back') {
-                        echo "SonarQube"
-                        sh 'mvn -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.jacoco.reportPath=target/jacoco.exec sonar:sonar'
-                    }
-                    
-                }
+    steps {
+        script {
+            dir('DevOps-project/DevOps_Project-Back') {
+                echo "SonarQube"
+                sh 'mvn -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.jacoco.reportPath=target/jacoco.exec sonar:sonar'
             }
         }
+    }
+}
 
         /*
         stage('Build Frontend') {
