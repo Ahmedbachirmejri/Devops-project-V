@@ -69,20 +69,12 @@ pipeline {
             }
         }*/
 
-        stage('SonarQube Analysis') {
+        stage('SonarQube') {
             steps {
-                script {
-                    def scannerHome = tool name: 'Sonar_devops', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    withSonarQubeEnv('Sonar_devops') {
-                        // Run Maven command with SonarQube analysis
-                        sh "mvn clean verify sonar:sonar \
-                            -Dsonar.projectKey=Devops-project-V \
-                            -Dsonar.projectName='Devops-project-V' \
-                            -Dsonar.host.url=http://10.0.2.15:9000 \
-                            -Dsonar.token=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"
-                    }
-                }
+                echo "SonarQube"
+              sh 'mvn -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.jacoco.reportPath=target/jacoco.exec sonar:sonar'
             }
+        
         }
 
         /*
