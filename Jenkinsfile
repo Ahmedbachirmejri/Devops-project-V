@@ -74,7 +74,7 @@ pipeline {
         script {
             dir('DevOps_Project-Back') {
                 echo "SonarQube"
-                sh 'mvn -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.jacoco.reportPath=DevOps_Project-Back/target/jacoco.exec sonar:sonar'
+                sh 'mvn -Dsonar.login=admin -Dsonar.password=mejri9876543210 -Dsonar.jacoco.reportPath=DevOps_Project-Back/target/jacoco.exec sonar:sonar'
             }
         }
     }
