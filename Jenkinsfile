@@ -14,7 +14,7 @@ pipeline {
                 checkout scm
             }
         }
-    }
+    
 
         /*stage('Build Backend') {
             steps {
@@ -117,4 +117,5 @@ pipeline {
     }
 }*/
 
+}
 }
