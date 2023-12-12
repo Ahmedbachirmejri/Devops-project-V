@@ -73,9 +73,15 @@ pipeline {
         stage('SonarQube') {
     steps {
         script {
-                withSonarQubeEnv(installationName: 'Sonar_devops') {
-                    dir('DevOps_Project-Back') {
-                             sh 'mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+            withSonarQubeEnv(installationName: 'Sonar_devops') {
+                dir('DevOps_Project-Back') {
+                    sh 'mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar \
+                        -Dsonar.projectKey=Devops-project-V \
+                        -Dsonar.projectName="Devops-project-V" \
+                        -Dsonar.host.url=http://10.0.2.15:9000 \
+                        -Dsonar.token=squ_95e336dbc2acf1d92765942019b93b2698023afe \
+                        -Dsonar.java.binaries=target/classes \
+                        -Dsonar.sources=src\main\java\tn\esprit\devops_project'
                 }
             }
         }
