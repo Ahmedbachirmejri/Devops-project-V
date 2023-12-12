@@ -100,10 +100,7 @@ stage("Running Docker Compose") {
     steps {
         script {
         dir('DevOps_Project-Back') {
-        deleteDir()
-        git url: 'https://github.com/Ahmedbachirmejri/Devops-project-V.git', branch: 'main'
-        
-        sh 'docker-compose up -d'
+        sh 'docker compose up -d'
     }
 }
     }
