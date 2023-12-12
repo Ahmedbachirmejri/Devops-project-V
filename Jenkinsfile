@@ -70,7 +70,7 @@ pipeline {
             }
         }*/
 
-        stage('SonarQube') {
+        /*stage('SonarQube') {
     steps {
         script {
             withSonarQubeEnv(installationName: 'Sonar_devops') {
@@ -83,7 +83,8 @@ pipeline {
             }
         }
     }
-}
+}*/
+
 
 
         /*
@@ -98,13 +99,35 @@ pipeline {
             }
         }*/
 
-    /*  stage("Docker build backend") {
+     stage("Docker build backend") {
     steps {
         script {
             dockerImage = docker.build "$registry:$BUILD_NUMBER"
         }
     }
-}*/
+}
+
+stage("Running Docker Compose") {
+    steps {
+        script {
+                dir('DevOps_Project-Back') {
+        deleteDir()
+        git url: 'https://github.com/Ahmedbachirmejri/Devops-project-V.git', branch: 'main'
+        
+        sh 'docker-compose up -d'
+    }
+}
+    }
+}
+/*stage('Build Backend') {
+            steps {
+                
+                        sh 'mvn clean'
+                    }
+                }
+            }
+        }*/
+
 
 
    /*stage('Push Docker Images to Docker Hub') {
