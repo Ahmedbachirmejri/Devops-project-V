@@ -16,7 +16,7 @@ pipeline {
         }
     
 
-        /*stage('Build Backend') {
+        stage('Build Backend') {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
@@ -24,7 +24,7 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
 
        /* stage('Nexus') {
             steps {
@@ -36,7 +36,7 @@ pipeline {
             }
         }*/
 
-        /*stage('Compile Backend') {
+        stage('Compile Backend') {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
@@ -48,7 +48,7 @@ pipeline {
             }
         }
 
-        stage('Test Backend') {
+        /*stage('Test Backend') {
             steps {
                 script {
                     dir('DevOps_Project-Back') {
@@ -56,17 +56,6 @@ pipeline {
                     }
                     
                 }
-            }
-        }*/
-
-        /*stage('Test') {
-            steps {
-              script {
-                    dir('DevOps_Project-Back') {
-                        sh 'mvn test'
-                    }
-                }
-                junit '**/   /*target/surefire-reports/TEST-*.xml'
             }
         }*/
 
