@@ -73,8 +73,7 @@ pipeline {
         stage('SonarQube') {
     steps {
         script {
-            def scannerHome = tool name: 'Sonar_devops', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                withSonarQubeEnv('Sonar_devops') {
+                withSonarQubeEnv(installationName: 'Sonar_devops') {
                     dir('DevOps_Project-Back') {
                              sh 'mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
                 }
