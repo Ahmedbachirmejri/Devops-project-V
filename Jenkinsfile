@@ -91,7 +91,9 @@ pipeline {
      stage("Docker build backend") {
     steps {
         script {
-            sh 'docker build -t DevOps_Project .'
+            dir('DevOps_Project-Back') {
+            dockerImage = docker.build "$registry:$BUILD_NUMBER"
+            }
         }
     }
 }
