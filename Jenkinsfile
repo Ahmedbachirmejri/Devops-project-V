@@ -74,7 +74,7 @@ pipeline {
     steps {
         script {
             dir('DevOps_Project-Back') {
-                withSonarQubeEnv(installationName: 'Sonar') {
+                withSonarQubeEnv(installationName: 'Sonar_devops') {
                 sh 'mvn -Dsonar.token=squ_95e336dbc2acf1d92765942019b93b2698023afe -Dsonar.login=admin -Dsonar.password=mejri9876543210 -Dsonar.jacoco.reportPath=DevOps_Project-Back/target/jacoco.exec sonar:sonar'
                 }
             }
