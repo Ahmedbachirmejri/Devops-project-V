@@ -75,7 +75,7 @@ pipeline {
         script {
             def scannerHome = tool name: 'Sonar_devops', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
             dir('DevOps_Project-Back') {
-                withSonarQubeEnv(installationName: 'Sonar_devops') {
+                withSonarQubeEnv('Sonar_devops') {
                              sh "mvn clean verify sonar:sonar \
                             -Dsonar.projectKey=Devops-project-V \
                             -Dsonar.projectName='Devops-project-V' \
