@@ -73,17 +73,7 @@ pipeline {
     steps {
         script {
             dir('DevOps_Project-Back') {
-                echo "SonarQube"
                 sh 'mvn -Dsonar.login=admin -Dsonar.password=mejri9876543210 -Dsonar.token=squ_95e336dbc2acf1d92765942019b93b2698023afe -Dsonar.jacoco.reportPath=DevOps_Project-Back/target/jacoco.exec sonar:sonar'
-                def scannerHome = tool name: 'Sonar_devops', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    withSonarQubeEnv('Sonar_devops') {
-                        // Run Maven command with SonarQube analysis
-                        sh "mvn clean verify sonar:sonar \
-                            -Dsonar.projectKey=Devops-project-V \
-                            -Dsonar.projectName='Devops-project-V' \
-                            -Dsonar.host.url=http://10.0.2.15:9000 \
-                            "
-            }
         }
     }
 }
