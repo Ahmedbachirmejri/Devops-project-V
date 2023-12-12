@@ -81,7 +81,7 @@ pipeline {
                         -Dsonar.host.url=http://10.0.2.15:9000 \
                         -Dsonar.token=squ_95e336dbc2acf1d92765942019b93b2698023afe \
                         -Dsonar.java.binaries=target/classes \
-                        -Dsonar.sources=src\main\java\tn\esprit\devops_project'
+                        -Dsonar.sources=src/main/java/tn/esprit/devops_project'
                 }
             }
         }
