@@ -110,7 +110,7 @@ pipeline {
 stage("Running Docker Compose") {
     steps {
         script {
-                dir('DevOps_Project-Back') {
+        dir('DevOps_Project-Back') {
         deleteDir()
         git url: 'https://github.com/Ahmedbachirmejri/Devops-project-V.git', branch: 'main'
         
